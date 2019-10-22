@@ -188,3 +188,7 @@ document.getElementById('sortLow').addEventListener('click', function() {
 document.getElementById('sortHigh').addEventListener('click', function() {
   sortHigh();
 });
+
+document.getElementById('all').addEventListener('click', function() {
+  showAllCars(cars);
+});
