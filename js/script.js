@@ -81,19 +81,14 @@ function showAllCars (array) {
   for (var i = 0; i < array.length; i++) {
     var transmissionDisplayValue = array[i].automatic ? "automatic": "manual";
     document.getElementById('cars').innerHTML +=
-    '<div class="card ml-3 m-4" style="width: 18rem;">'
-    +'<img class="img-thumbnail" src="' + array[i].photo + ' " alt="Car"/>'
+    '<div class="card m-4" style="width: 20rem;">'
+    +'<img class="card-img-top" src="' + array[i].photo + ' " alt="Car"/>'
     +'<div class="card-body">'
     + '<h5 class="card-title">'+ array[i].brand + '</h5>'
-    + '<p class="card-text">Color: ' + array[i].color + '</p>'
-    + '<p class="card-text">Price: $' + array[i].price + '</p>'
-    + '<p class="card-text">Year: ' + array[i].year + '</p>'
-    + '<p class="card-text">Transmission :' + transmissionDisplayValue + '</p>'
-    +'</div>'
-    + '<div class="card-body">'
-    + '<a href="#" class="card-link">Card link</a>'
-    + '<a href="#" class="card-link">Another link</a>'
-    + '</div>'
+    + '<p class="card-text mb-1">Color: ' + array[i].color + '</p>'
+    + '<p class="card-text mb-1">Price: $' + array[i].price + '</p>'
+    + '<p class="card-text mb-1">Year: ' + array[i].year + '</p>'
+    + '<p class="card-text mb-1">Transmission :' + transmissionDisplayValue + '</p>'
     +'</div>'
   }
 }
@@ -140,14 +135,35 @@ function sortAtoZ() {
   }));
   showAllCars(sortedCars);
   return sortedCars;
-  
 }
 
-// users.sort(function(a, b){
-//   if(a.firstname < b.firstname) { return -1; }
-//   if(a.firstname > b.firstname) { return 1; }
-//   return 0;
-// })
+function sortLow() {
+  var sortedCars = cars.sort((function(a, b){
+    if(a.price < b.price) {
+      return -1;
+    }
+    if(a.price > b.price) {
+      return 1;
+    }
+    return 0;
+  }));
+  showAllCars(sortedCars);
+  return sortedCars;
+}
+
+function sortHigh() {
+  var sortedCars = cars.sort((function(a, b){
+    if(a.price < b.price) {
+      return 1;
+    }
+    if(a.price > b.price) {
+      return -1;
+    }
+    return 0;
+  }));
+  showAllCars(sortedCars);
+  return sortedCars;
+}
 
 document.getElementById('search').addEventListener('click', function() {
   searchCar();
@@ -163,4 +179,12 @@ document.getElementById('automat').addEventListener('click', function() {
 
 document.getElementById('sortAz').addEventListener('click', function() {
   sortAtoZ();
+});
+
+document.getElementById('sortLow').addEventListener('click', function() {
+  sortLow();
+});
+
+document.getElementById('sortHigh').addEventListener('click', function() {
+  sortHigh();
 });
